@@ -6,6 +6,10 @@ $header-bg-color: #fff;
 $header-bg-color-secondary: #fff;
 $header-heading-color: #222;
 $section-headings-color: #222;
+// Cayman's grays read as faint; use the heading color for all text
+$body-text-color: #222;
+$code-text-color: #222;
+$blockquote-text-color: #222;
 
 @import "jekyll-theme-cayman";
 

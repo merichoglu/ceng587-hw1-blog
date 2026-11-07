@@ -89,6 +89,8 @@ The algorithm has several different parts with different computational complexit
 
 Firstly, I measured where the compute time goes per sequence. Here I fixed the settings and investigated how image size and frame count affect each stage of the algorithm. The results are shown in the table below. These runs used $$\lambda = 100$$ and $$N = 100$$, and the build/solve times are given per channel. HDR merge is the time it takes to merge the HDR image after the camera response function is found. The results show that the solve time depends only on the frame count while load and merge scale with pixel and frame count. The build/solve times are relatively small compared to the HDR merge time.
 
+**Table 1:** *Running time per sequence with λ = 100 and N = 100. Build and solve times are per channel.*
+
 | Sequence | Resolution | Frames | Load (ms) | Build system (ms) | Solve (ms) | HDR merge (ms) |
 | --- | --- | --- | --- | --- | --- | --- |
 | Canon EOS 550D | 5184×3456 | 9 | 470 | 0.62 | 16.1 | 2958 |
@@ -98,6 +100,8 @@ Firstly, I measured where the compute time goes per sequence. Here I fixed the s
 | Virtual sRGB | 1024×1024 | 9 | 21 | 0.55 | 15.9 | 141 |
 
 Secondly, I measured how the solve time scales with the number of sampled pixels N. The results are shown in the table below. I used 9 frames (the virtual camera frames), averaged over 5 sequences, and swept the run with 5 $$\lambda$$ × 5 seeds to make the averaging fair. The build/solve times are given per channel. As seen from the table, build time scales linearly with N, while solve time scales quadratically with N on the high end. The results show that the algorithm is efficient for small N, but becomes computationally expensive for larger N.
+
+**Table 2:** *Build and solve time against the number of sampled pixels N, per channel, averaged over the five 9-frame virtual sequences, 5 λ values and 5 seeds.*
 
 | N | System size (equations × unknowns) | Build system (ms) | Solve (ms) |
 | --- | --- | --- | --- |

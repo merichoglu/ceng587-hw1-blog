@@ -1,0 +1,11 @@
+---
+---
+
+// METU red (Pantone 485 C); the same color twice gives a solid header instead of Cayman's gradient
+$header-bg-color: #DA291C;
+$header-bg-color-secondary: #DA291C;
+$header-heading-color: #fff;
+$section-headings-color: #DA291C;
+$body-link-color: #A6192E;
+
+@import "jekyll-theme-cayman";

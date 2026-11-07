@@ -1,5 +1,5 @@
 title: Recovering HDR Radiance Maps from Photographs
-description: CENG587 HDR Imaging, HW1 - an implementation of Debevec and Malik (SIGGRAPH 97)
+description: Blog Post for CENG587 HDR Imaging. Implemented by Meriç Buğra Haliloğlu 2580629
 theme: jekyll-theme-cayman
 markdown: kramdown
 kramdown:

@@ -3,8 +3,6 @@ layout: default
 title: "Implementation of Recovering High Dynamic Range Radiance Maps from Photographs"
 ---
 
-## Blog Post by Meriç Buğra Haliloğlu, 2580629
-
 ### Introduction
 
 HDR Imaging is the go-to technique for capturing the full luminosity of real life scenes. Its basic idea is to capture a scene with multiple exposure times, and merge those frames using some weighting function. To do this merging, there are multiple algorithms, and in this blog post I will explain the specific method I chose to implement by Debevec and Malik [1].
@@ -66,26 +64,23 @@ In order to validate my implementation, I used the given virtual camera frames. 
 
 ![Recovered Camera Response Function vs Ground Truth for sRGB virtual camera (green channel only)](results/virtual_camera/srgb/camera_response_curve_srgb_Green_l100.0_N100_S0.png)
 
-*Figure 1: Recovered Camera Response Function vs Ground Truth for sRGB virtual camera (green channel only)*
-
+**Figure 1:** *Recovered Camera Response Function vs Ground Truth for sRGB virtual camera (green channel only)*
 
 I used the virtual camera frames to sweep the parameters N and $$\lambda$$ to find the optimal values. The results are shown in the figure below. The values I chose to use are N=100 and $$\lambda$$ = 100, which gives reasonable RMSE values across different virtual cameras. It's the best combination on linear virtual camera, and the second best on sRGB virtual camera, and close to the best on mildly noisy virtual cameras.
 
 ![Optimal Parameters for sRGB virtual camera](results/analysis/srgb_rmse_heatmap.png)
 
-*Figure 2: Optimal Parameters for sRGB virtual camera*
+**Figure 2:** *Optimal Parameters for sRGB virtual camera*
 
 ![Optimal Parameters for linear virtual camera](results/analysis/linear_rmse_heatmap.png)
 
-*Figure 3: Optimal Parameters for linear virtual camera*
-
+**Figure 3:** *Optimal Parameters for linear virtual camera*
 
 There are other virtual camera settings with noise included, and the smoothness parameter $$\lambda$$ is more important in those cases. The optimal $$\lambda$$ for the more noisy virtual camera setting is $$\lambda$$ = 500 which gives the best match with the ground truth camera response function measured by RMSE.
 
 ![Optimal Parameters for noisy virtual camera](results/analysis/noise150_rmse_heatmap.png)
 
-*Figure 4: Optimal Parameters for noisy virtual camera*
-
+**Figure 4:** *Optimal Parameters for noisy virtual camera*
 
 ### Running Time of the Implementation
 
@@ -118,30 +113,25 @@ Here are the recovered response curves of the given real camera sequences. Since
 
 ![Recovered Camera Response Function for Canon EOS 550D](results/blog_figures/Canon_EOS_550D_RGB_l100_N100.png)
 
-*Figure 5: Recovered Camera Response Function for Canon EOS 550D*
-
+**Figure 5:** *Recovered Camera Response Function for Canon EOS 550D*
 
 ![Recovered Camera Response Function for Minolta DiMAGE A1](results/blog_figures/Minolta_DiMAGE_A1_RGB_l100_N100.png)
 
-*Figure 6: Recovered Camera Response Function for Minolta DiMAGE A1*
-
+**Figure 6:** *Recovered Camera Response Function for Minolta DiMAGE A1*
 
 ![Recovered Camera Response Function for Nikon Coolpix E5400](results/blog_figures/Nikon_Coolpix_E5400_RGB_l100_N100.png)
 
-*Figure 7: Recovered Camera Response Function for Nikon Coolpix E5400*
-
+**Figure 7:** *Recovered Camera Response Function for Nikon Coolpix E5400*
 
 ![Recovered Camera Response Function for Nikon D2H](results/blog_figures/Nikon_D2H_RGB_l100_N100.png)
 
-*Figure 8: Recovered Camera Response Function for Nikon D2H*
-
+**Figure 8:** *Recovered Camera Response Function for Nikon D2H*
 
 Also, to show the effect of $$\lambda$$, here I include one camera's red channel curve for $$\lambda = 10$$ and $$\lambda = 100$$. As seen from the figures, larger $$\lambda$$ values produce smoother curves.
 
 ![Recovered Camera Response Function for Canon EOS 550D with different smoothness parameters](results/blog_figures/Canon_EOS_550D_Red_l10_vs_l100.png)
 
-*Figure 9: Recovered Camera Response Function for Canon EOS 550D with different smoothness parameters*
-
+**Figure 9:** *Recovered Camera Response Function for Canon EOS 550D with different smoothness parameters*
 
 ### Recovered HDR Images
 
@@ -149,20 +139,19 @@ Since the final output of the algorithm is an HDR image, I also include the reco
 
 ![Recovered HDR Image for Canon EOS 550D](results/blog_figures/Canon_EOS_550D_hdr_comparison.png)
 
-*Figure 10: Recovered HDR Image for Canon EOS 550D*
+**Figure 10:** *Recovered HDR Image for Canon EOS 550D*
 
 ![Recovered HDR Image for Minolta DiMAGE A1](results/blog_figures/Minolta_DiMAGE_A1_hdr_comparison.png)
 
-*Figure 11: Recovered HDR Image for Minolta DiMAGE A1*
+**Figure 11:** *Recovered HDR Image for Minolta DiMAGE A1*
 
 ![Recovered HDR Image for Nikon Coolpix E5400](results/blog_figures/Nikon_Coolpix_E5400_hdr_comparison.png)
 
-*Figure 12: Recovered HDR Image for Nikon Coolpix E5400*
+**Figure 12:** *Recovered HDR Image for Nikon Coolpix E5400*
 
 ![Recovered HDR Image for Nikon D2H](results/blog_figures/Nikon_D2H_hdr_comparison.png)
 
-*Figure 13: Recovered HDR Image for Nikon D2H*
-
+**Figure 13:** *Recovered HDR Image for Nikon D2H*
 
 The results look visually pleasing to me. Scenes were static so there are no ghosting artifacts, so there was no need for a complex deghosting algorithm. The recovered HDR images capture the full dynamic range of the scenes, and the details in both the shadows and highlights are preserved. These results show that my implementation works as expected.
 
@@ -172,8 +161,7 @@ Required by the homework, I downloaded a camera application called ProCamera, st
 
 ![Three different exposure valued photographs at ISO 100](results/blog_figures/iphone_15_exposures.png)
 
-*Figure 14: Three different exposure valued photographs at ISO 100*
-
+**Figure 14:** *Three different exposure valued photographs at ISO 100*
 
 To convert the HEIC images to JPEG format, I used the builtin MacOS tool **sips**. The algorithm only needs the ratios between exposure times, not their absolute values, because a constant scale factor just shifts $$\ln E$$ up or down. So I assumed the exposure time doubled with each frame. I validated this by checking that EXIF values deviate from exact doubling by at most 5.4%, which is acceptable for this experiment.
 
@@ -181,20 +169,17 @@ I then used the exposure times and the images to recover the response curve for 
 
 ![Recovered Camera Response Function for iPhone 15 shown per channel](results/blog_figures/iphone_15_RGB_l100_N100.png)
 
-*Figure 15: Recovered Camera Response Function for iPhone 15 shown per channel*
-
+**Figure 15:** *Recovered Camera Response Function for iPhone 15 shown per channel*
 
 Finally, I merged the HDR image using the recovered response curve and the input images. The resulting HDR image is shown below. The HDR image captures the full dynamic range of the scene. However, due to the impossibility of people not walking around CENG building, there are several ghosting artifacts. Since deghosting methods are not in the scope of this homework, I did not attempt to remove them.
 
 ![Merged HDR image.](results/iphone_15/tonemapped.jpg)
 
-*Figure 16: Merged HDR image.*
-
+**Figure 16:** *Merged HDR image.*
 
 ![Ghosting artifacts caused by motion in the scene even though the camera was static.](results/blog_figures/iphone_15_ghosting.png)
 
-*Figure 17: Ghosting artifacts caused by motion in the scene even though the camera was static.*
-
+**Figure 17:** *Ghosting artifacts caused by motion in the scene even though the camera was static.*
 
 ### Comparison of Recovered Response Curves
 

@@ -1,0 +1,11 @@
+title: Recovering HDR Radiance Maps from Photographs
+description: CENG587 HDR Imaging, HW1 - an implementation of Debevec and Malik (SIGGRAPH 97)
+theme: jekyll-theme-cayman
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor

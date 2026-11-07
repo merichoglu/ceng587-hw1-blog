@@ -157,7 +157,7 @@ In this blog post, I tried to explain how I implemented the HDR merging algorith
 
 ## References
 
-[1] Debevec, P. E., & Malik, J. (1997). Recovering high dynamic range radiance maps from photographs. In Proceedings of the 24th annual conference on Computer graphics and interactive techniques (pp. 369-378).
+[1] Debevec, P. E., & Malik, J. (1997). Recovering High Dynamic Range Radiance Maps From Photographs. In Proceedings of the 24th annual conference on Computer graphics and interactive techniques (pp. 369-378).
 
 ## APPENDIX
 
